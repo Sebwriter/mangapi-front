@@ -1,13 +1,13 @@
 <template>
     <section>
         <div>
-            <img src="" alt="">
-            <h2>Titre :</h2>
-            <h3>Auteur :</h3>
-            <p>Nombre de tomes :</p>
-            <p>Adaptation en anime : </p>
-            <p v-if="manga.adaptation_anime">Nombre d'épisodes</p>
-            <p v-if="manga.adaptation_anime">Nombre de saisons</p>
+            <img :src=manga.illustration alt="">
+            <h2>Titre : {{manga.nom}}</h2>
+            <h3>Auteur : {{manga.auteur}}</h3>
+            <p>Nombre de tomes : {{manga.nbr_tomes}}</p>
+            <p>Adaptation en anime : {{manga.adaptation_anime}}</p>
+            <p v-if="manga.adaptation_anime">Nombre d'épisodes : {{manga.nbr_episodes}}</p>
+            <p v-if="manga.adaptation_anime">Nombre de saisons : {{manga.nbr_saisons}}</p>
         </div>
     </section>
 </template>
@@ -27,7 +27,8 @@ export default {
     },
     async created() {
         const {mangaId}=this.$route.params
-        const monmangas = await axios.get('localhost:8000/api/single_read.php/?='+mangaId)
+        console.log(mangaId)
+        const monmangas = await axios.get('http://localhost:8000/api/single_read.php?id='+ mangaId)
         console.log(monmangas)
         this.manga = monmangas.data
     }

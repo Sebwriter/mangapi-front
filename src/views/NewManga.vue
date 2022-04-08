@@ -1,5 +1,5 @@
 <template>
-    <form class="form-add" action="" method="post">
+    <form class="form-add" v-on:submit.prevent="addManga">
             <label for="nom">Nom du manga</label>
             <input type="text" name="nom" v-model="manga.nom">
 
@@ -27,7 +27,7 @@
             v-if="manga.adaptation_anime" 
             v-model="manga.nbr_saisons">
             <br>
-            <button @click="addManga()">Ajouter</button>
+            <button>Ajouter</button>
 
         </form>
 </template>
@@ -38,19 +38,13 @@ import axios from 'axios'
 export default {
     name: 'NewManga',
     data: () => ({
-        manga: {
-        nom:"",
-        auteur:"",
-        illustration:"",
-        nbr_tomes:"",
-        adaptation_anime:"",
-        nbr_episodes:"",
-        nbr_saisons:""
-        }
+        manga: {}
     }),
     methods: {
        async addManga() {
-           await axios.post('localhost:8000/api/create.php',this.manga)
+           
+          let envoi = await axios.post('http://localhost:8000/api/create.php',this.manga)
+        console.log(envoi)
         }
     }
 

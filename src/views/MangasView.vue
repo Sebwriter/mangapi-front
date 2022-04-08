@@ -23,16 +23,18 @@
 								<!-- Content -->
 									<div class="box post" v-for="manga in mangas"
                                     :key=manga.id
-                                    @click="goToSelectedManga(manga.id)">
+                                    >
 										<a href="#" class="image featured">
                                             <img :src="manga.illustration" alt="" /></a>
 										<header>
-											<h2>{{manga.nom}}</h2>
+											<h2
+											@click="goToSelectedManga(manga.id)">{{manga.nom}}</h2>
 											<p>{{manga.auteur}}</p>
 										</header>
 										<p>
 											{{manga.nbr_tomes}}
 										</p>
+										<button @click="editManga(manga.id)">Editer</button>
 										
 										
 									</div>
@@ -110,7 +112,10 @@ export default {
         goToSelectedManga(mangaId) {
             this.$router.push({ name: 'mangaDetails', params: { mangaId } })
 
-        }
+        },
+		editManga(mangaId){
+			this.$router.push({ name: 'editMangas', params: { mangaId } })
+		}
     },
     async created() {
         const mangas = await axios.get('http://localhost:8000/api/read.php')
