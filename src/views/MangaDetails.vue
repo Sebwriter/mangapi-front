@@ -1,7 +1,7 @@
 <template>
-    <section>
-        <div>
-            <img :src=manga.illustration alt="">
+    <section style="display:flex justify-content:center">
+        <div class="box post" style="max-width:80%" >
+            <img :src=manga.illustration style="max-width:100%" alt="">
             <h2>Titre : {{manga.nom}}</h2>
             <h3>Auteur : {{manga.auteur}}</h3>
             <p>Nombre de tomes : {{manga.nbr_tomes}}</p>
