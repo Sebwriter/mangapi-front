@@ -1,32 +1,33 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+  <div id="app" class="homepage is-preload">
+    <div id="page-wrapper">
+
+		<!-- Header -->
+		<section id="header">
+
+    <HeaderView /> 
+    </section>
     <router-view/>
+    <FooterView />
+  </div>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import HeaderView from '@/components/HeaderView.vue'
+import FooterView from '@/components/FooterView.vue'
+
+export default {
+  name:'App',
+  components:{
+    HeaderView,
+    FooterView
+  }
 }
 
-nav {
-  padding: 30px;
-}
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+
+<style src="./assets/css/main.css">
 </style>
